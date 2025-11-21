@@ -6,7 +6,7 @@ class ShareService {
   factory ShareService() => _instance;
   ShareService._internal();
 
-  Future<void> shareUrl(String url) async {
+  Future<void> shareUrl(String url, {VoidCallback? onShared}) async {
     try {
       await SharePlus.instance.share(
         ShareParams(
@@ -14,6 +14,8 @@ class ShareService {
           sharePositionOrigin: const Rect.fromLTWH(0, 0, 10, 10),
         ),
       );
+      // Share dialog açıldığında callback çağır
+      onShared?.call();
     } catch (e) {
       debugPrint('Share error: $e');
     }

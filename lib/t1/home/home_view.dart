@@ -9,8 +9,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends ShareDemoPage {
- 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +39,39 @@ class _HomeViewState extends ShareDemoPage {
                 ),
               ),
             ),
+            const SizedBox(height: 40),
+            if (totalShareAttempts > 0) ...[
+              Container(
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.blue.shade50,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.blue, width: 2),
+                ),
+                child: Column(
+                  children: [
+                    const Icon(Icons.share, size: 64, color: Colors.blue),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Toplam Paylaşım',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '$totalShareAttempts',
+                      style: const TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ],
         ),
       ),

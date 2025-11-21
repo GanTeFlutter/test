@@ -6,6 +6,8 @@ abstract class ShareDemoPage extends State<HomeView> {
   late final ShareService shareService;
   late final TextEditingController urlController;
 
+  int totalShareAttempts = 0;
+
   @override
   void initState() {
     super.initState();
@@ -20,13 +22,27 @@ abstract class ShareDemoPage extends State<HomeView> {
     super.dispose();
   }
 
-  void share() {
+  Future<void> share() async {
     if (urlController.text.isEmpty) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Please enter a URL')));
       return;
     }
-    shareService.shareUrl(urlController.text);
+
+    await shareService.shareUrl(
+      urlController.text,
+      onShared: () {
+        setState(() {
+          totalShareAttempts++;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('✓ Paylaşım diyalogu açıldı'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      },
+    );
   }
 }
