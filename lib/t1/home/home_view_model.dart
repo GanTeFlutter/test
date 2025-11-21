@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home/home_view.dart';
-import 'package:flutter_application_1/service/shared_service.dart';
+import 'package:flutter_application_1/t1/home/home_view.dart';
+import 'package:flutter_application_1/t1/service/shared_service.dart';
 
 abstract class ShareDemoPage extends State<HomeView> {
   late final ShareService shareService;
